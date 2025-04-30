@@ -8,12 +8,13 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const backendBaseUl = 'https://Add-your-url-5000.app.github.dev'; //before trying to run change to codespace url and make sure 5000 port is public
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/login', { username, password });
+      const res = await axios.post(`${backendBaseUrl}/login`, { username, password });
       alert(res.data.message);
       localStorage.setItem('token', res.data.token);
       navigate('/Home');  // Redirect to home after successful login
