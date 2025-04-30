@@ -7,7 +7,7 @@ import "./Login.css";  // reuse login styles for now
 const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const backendBaseUl = 'https://Add-your-url-5000.app.github.dev'; //before trying to run change to codespace url and make sure 5000 port is public
+  const backendBaseUrl = 'https://Add-your-url-5000.app.github.dev'; //before trying to run change to codespace url and make sure 5000 port is public
 
   const handleRegister = async (e) => {
     e.preventDefault();
