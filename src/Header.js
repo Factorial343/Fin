@@ -14,7 +14,10 @@ const Header = () => {
                 <Link to="/home">CONTACT US</Link>
                 <Link to="/advisor"><p className="logo">TRY ME!</p></Link>
             </div>
-            
+        
+            <div style={{ position: 'absolute', top: 20, right: 20 }}>
+              <BudgetDropdown />
+            </div>
         </div>
     );
 }
