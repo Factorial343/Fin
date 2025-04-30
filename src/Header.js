@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import logo from './images/logo.png';
 import './Header.css';
+import BudgetDropdown from './BudgetDropdown';
 
 const Header = () => {
     return (
