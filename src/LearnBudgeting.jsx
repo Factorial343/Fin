@@ -1,31 +1,30 @@
 import React, { useState } from 'react';
-import { Configuration, OpenAIApi } from 'openai';
 
-const configuration = new Configuration({
-  apiKey: process.env.REACT_APP_OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
+const LearnBudgeting = () => {
+  const [question, setQuestion] = useState('');
+  const [response, setResponse] = useState('');
+  const [loading, setLoading] = useState(false);
 
-const askAI = async () => {
-  if (!question.trim()) return;
+  const askAI = async () => {
+    if (!question.trim()) return;
 
-  setLoading(true);
-  try {
-    const response = await fetch('http://localhost:5000/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: question }),
-    });
+    setLoading(true);
+    try {
+      const res = await fetch('http://localhost:5000/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: question }),
+      });
 
-    const data = await response.json();
-    setResponse(data.reply);
-  } catch (error) {
-    console.error(error);
-    setResponse('Sorry, something went wrong with the AI.');
-  } finally {
-    setLoading(false);
-  }
-};
+      const data = await res.json();
+      setResponse(data.reply);
+    } catch (err) {
+      console.error(err);
+      setResponse('Sorry, something went wrong with the AI.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div style={{ padding: '2rem' }}>
@@ -57,4 +56,3 @@ const askAI = async () => {
 };
 
 export default LearnBudgeting;
-
