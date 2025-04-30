@@ -5,6 +5,7 @@ import FinancialAdvisorApp from "./FinancialAdvisorApp";
 import Home from "./Home";
 import Login from "./Login";
 import Register from "./Register";  // ✅ import Register component
+import LearnBudgeting from './LearnBudgeting';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/register" element={<Register />} />  {/* ✅ added route */}
           <Route path="/home" element={<Home />} />
           <Route path="/advisor" element={<FinancialAdvisorApp />} />
+          <Route path="/learn-budgeting" element={<LearnBudgeting />} /> 
           {/* <Route path="/achivement" element={<Achivements/>}/> */}
         </Routes>
       </Router>
