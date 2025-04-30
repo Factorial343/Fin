@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import "./Login.css";  // reuse login styles for now
-import { useNavigate } from 'react-router-dom';
+
 
 
 const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate
+  const backendBaseUl = 'https://Add-your-url-5000.app.github.dev'; //before trying to run change to codespace url and make sure 5000 port is public
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/register', { username, password });
+      const res = await axios.post(`${backendBaseUrl}/register`, { username, password });
       alert(res.data);  // Show server's success message
         } catch (err) {
       alert(err.response ? err.response.data : err.message);  // Show error message
