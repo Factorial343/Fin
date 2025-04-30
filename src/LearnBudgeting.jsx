@@ -6,32 +6,26 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-const LearnBudgeting = () => {
-  const [question, setQuestion] = useState('');
-  const [response, setResponse] = useState('');
-  const [loading, setLoading] = useState(false);
+const askAI = async () => {
+  if (!question.trim()) return;
 
-  const askAI = async () => {
-    if (!question.trim()) return;
+  setLoading(true);
+  try {
+    const response = await fetch('http://localhost:5000/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: question }),
+    });
 
-    setLoading(true);
-    try {
-      const result = await openai.createChatCompletion({
-        model: 'gpt-3.5-turbo',
-        messages: [{ role: 'user', content: question }],
-        max_tokens: 150,
-        temperature: 0.7,
-      });
-
-      const aiReply = result.data.choices[0].message.content.trim();
-      setResponse(aiReply);
-    } catch (error) {
-      console.error(error);
-      setResponse('Sorry, something went wrong with the AI.');
-    } finally {
-      setLoading(false);
-    }
-  };
+    const data = await response.json();
+    setResponse(data.reply);
+  } catch (error) {
+    console.error(error);
+    setResponse('Sorry, something went wrong with the AI.');
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div style={{ padding: '2rem' }}>
