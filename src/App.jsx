@@ -4,6 +4,8 @@ import Header from "./Header";
 import FinancialAdvisorApp from "./FinancialAdvisorApp";
 import Home from "./Home";
 import Login from "./Login";
+import AIExpenseSorter from "./AIExpenseSorter";
+
 function App() {
   return (
     <div className="App">
@@ -14,6 +16,7 @@ function App() {
 
           <Route path="/home" element={<Home />} />
           <Route path="/advisor" element={<FinancialAdvisorApp />} />
+          <Route path="/ai-budget" element={<AIExpenseSorter />} />
           {/* <Route path="/achivement" element={<Achivements/>}/> */}
         </Routes>
       </Router>
