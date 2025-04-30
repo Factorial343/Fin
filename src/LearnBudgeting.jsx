@@ -17,7 +17,7 @@ const LearnBudgeting = () => {
       });
 
       const data = await res.json();
-      setResponse(data.reply);
+      setResponse(data.answer);
     } catch (err) {
       console.error(err);
       setResponse('Sorry, something went wrong with the AI.');
