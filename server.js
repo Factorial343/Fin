@@ -17,7 +17,7 @@ const openai = new OpenAIApi(configuration);
 
 app.post('/ask', async (req, res) => {
   try {
-    const userMessage = req.body.question;
+    const userMessage = req.body.message;
 
     // ✅ LOG #1: Received input
     console.log("🔍 Received question from frontend:", userMessage);
