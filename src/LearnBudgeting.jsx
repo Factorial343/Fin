@@ -1,29 +1,67 @@
 import React, { useState } from 'react';
+import { Configuration, OpenAIApi } from 'openai';
+
+// Set up OpenAI with your environment variable
+const configuration = new Configuration({
+  apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
 
 const LearnBudgeting = () => {
-  const [tip, setTip] = useState('');
+  const [question, setQuestion] = useState('');
+  const [response, setResponse] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const aiTips = [
-    "Track every dollar you spend for one week.",
-    "Use the 50/30/20 rule: 50% needs, 30% wants, 20% savings.",
-    "Set a weekly spending limit and stick to it.",
-    "Cancel one subscription you don’t use this week.",
-    "Automate a $10 savings transfer every payday."
-  ];
+  const askAI = async () => {
+    if (!question.trim()) return;
 
-  const getAITip = () => {
-    const randomTip = aiTips[Math.floor(Math.random() * aiTips.length)];
-    setTip(randomTip);
+    setLoading(true);
+    try {
+      const result = await openai.createChatCompletion({
+        model: 'gpt-3.5-turbo',
+        messages: [{ role: 'user', content: question }],
+        max_tokens: 150,
+        temperature: 0.7,
+      });
+
+      const aiReply = result.data.choices[0].message.content.trim();
+      setResponse(aiReply);
+    } catch (error) {
+      console.error(error);
+      setResponse('Sorry, something went wrong with the AI.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div style={{ padding: '2rem' }}>
       <h1>AI Budgeting Tutor</h1>
-      <p>Click below to receive a smart budgeting tip powered by AI logic:</p>
-      <button onClick={getAITip}>Give me a tip</button>
-      {tip && <p style={{ marginTop: '1rem', fontWeight: 'bold' }}>{tip}</p>}
+      <p>Ask me anything about budgeting or saving money:</p>
+      <input
+        type="text"
+        placeholder="e.g. How do I budget $500/month?"
+        value={question}
+        onChange={(e) => setQuestion(e.target.value)}
+        style={{ width: '100%', padding: '10px', fontSize: '16px' }}
+      />
+      <button
+        onClick={askAI}
+        disabled={loading}
+        style={{ marginTop: '10px', padding: '10px', fontSize: '16px' }}
+      >
+        {loading ? 'Thinking...' : 'Ask AI'}
+      </button>
+
+      {response && (
+        <div style={{ marginTop: '20px', background: '#f4f4f4', padding: '15px', borderRadius: '8px' }}>
+          <strong>AI says:</strong>
+          <p>{response}</p>
+        </div>
+      )}
     </div>
   );
 };
 
 export default LearnBudgeting;
+
