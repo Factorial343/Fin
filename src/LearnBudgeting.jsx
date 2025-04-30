@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Configuration, OpenAIApi } from 'openai';
 
-// Set up OpenAI with your environment variable
 const configuration = new Configuration({
   apiKey: process.env.REACT_APP_OPENAI_API_KEY,
 });
