@@ -5,6 +5,7 @@ import FinancialAdvisorApp from "./FinancialAdvisorApp";
 import Home from "./Home";
 import Login from "./Login";
 import Register from "./Register";  // ✅ import Register component
+import AIExpenseSorter from "./AIExpenseSorter";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/register" element={<Register />} />  {/* ✅ added route */}
           <Route path="/home" element={<Home />} />
           <Route path="/advisor" element={<FinancialAdvisorApp />} />
+          <Route path="/ai-budget" element={<AIExpenseSorter />} />
           {/* <Route path="/achivement" element={<Achivements/>}/> */}
         </Routes>
       </Router>
@@ -24,4 +26,3 @@ function App() {
 }
 
 export default App;
-
