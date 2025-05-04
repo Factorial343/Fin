@@ -17,7 +17,7 @@ function App() {
           <Route path="/register" element={<Register />} />  {/* ✅ added route */}
           <Route path="/home" element={<Home />} />
           <Route path="/advisor" element={<FinancialAdvisorApp />} />
-          <Route path="/ai-budget" element={<AIExpenseSorter />} />
+          <Route path="/AIExpenseSorter" element={<AIExpenseSorter />} />
           {/* <Route path="/achivement" element={<Achivements/>}/> */}
         </Routes>
       </Router>
