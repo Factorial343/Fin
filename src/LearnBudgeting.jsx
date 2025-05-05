@@ -32,7 +32,7 @@ const LearnBudgeting = () => {
       <p>Ask me anything</p>
       <input
         type="text"
-        placeholder="e.g. How do I budget $500/month?"
+        placeholder="e.g. What are taxes"
         value={question}
         onChange={(e) => setQuestion(e.target.value)}
         style={{ width: '100%', padding: '10px', fontSize: '16px' }}
