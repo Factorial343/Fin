@@ -28,8 +28,8 @@ const LearnBudgeting = () => {
 
   return (
     <div style={{ padding: '2rem' }}>
-      <h1>AI Budgeting Tutor</h1>
-      <p>Ask me anything about budgeting or saving money:</p>
+      <h1>AI Tutor</h1>
+      <p>Ask me anything</p>
       <input
         type="text"
         placeholder="e.g. How do I budget $500/month?"
