@@ -1,6 +1,6 @@
 .logo_icon {
-	width: 100px;
-	height: 100px;
+  width: 100px;
+  height: 100px;
 }
 
 .header {
@@ -11,7 +11,6 @@
   background-color: #183059;
   color: white;
 }
-
 
 .links {
   display: flex;
@@ -50,4 +49,29 @@ a {
   color: white;
   font-weight: 500;
   background-color: #183059;
+}
+
+/* ✅ Style for Learn Budgeting & Taxes button */
+.learn-btn {
+  margin-left: 20px;
+  padding: 8px 16px;
+  background: linear-gradient(45deg, #F03A47, #D22E1E);
+  color: white;
+  border: none;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 14px;
+  font-family: 'Arial', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.learn-btn:hover {
+  background: #ffffff;
+  color: #F03A47;
+  transform: scale(1.05);
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
 }
