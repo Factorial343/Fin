@@ -7,6 +7,7 @@ import Login from "./Login";
 import Register from "./Register";  // ✅ import Register component
 import AIExpenseSorter from "./AIExpenseSorter";
 import LearnBudgeting from './LearnBudgeting';
+import AIExpenseSorter from "./AIExpenseSorter";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/advisor" element={<FinancialAdvisorApp />} />
           <Route path="/AIExpenseSorter" element={<AIExpenseSorter />} />
           <Route path="/learn-budgeting" element={<LearnBudgeting />} /> 
+          <Route path="/AIExpenseSorter" element={<AIExpenseSorter />} />
           {/* <Route path="/achivement" element={<Achivements/>}/> */}
         </Routes>
       </Router>

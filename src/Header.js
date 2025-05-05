@@ -1,26 +1,22 @@
 import { Link } from 'react-router-dom';
 import logo from './images/logo.png';
 import './Header.css';
-import BudgetDropdown from './BudgetDropdown';
 
 const Header = () => {
-    return (
-        <div className="header">
-            <img src = {logo} alt = "logo" className="logo_icon" />
+  return (
+    <div className="header">
+      <img src={logo} alt="logo" className="logo_icon" />
 
-            <div className="links">
-                <Link to="/home">HOME</Link>
-                <Link to="/home">ABOUT</Link>
-                <Link to="/home">CONTACT US</Link>
-                <Link to="/advisor"><p className="logo">TRY ME!</p></Link>
-                <Link to="/AIExpenseSorter">AI Budget Planner</Link>
-            </div>
-        
-            <div style={{ position: 'absolute', top: 20, right: 20 }}>
-              <BudgetDropdown />
-            </div>
-        </div>
-    );
-}
+      <div className="links">
+        <Link to="/home">HOME</Link>
+        <Link to="/home">ABOUT</Link>
+        <Link to="/home">CONTACT US</Link>
+        <Link to="/AIExpenseSorter"> <button className="learn-btn">AI Budget Planner</button></Link>
+        <Link to="/learn-budgeting"> <button className="learn-btn">Learn Budgeting & Taxes</button></Link>
+        <Link to="/advisor"><button className="learn-btn">Chat With Us!</button></Link>
+      </div>
+    </div>
+  );
+};
 
 export default Header;
