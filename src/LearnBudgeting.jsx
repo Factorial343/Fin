@@ -1,30 +1,41 @@
 import React, { useState } from 'react';
+import axios from "axios";
 
 const LearnBudgeting = () => {
   const [question, setQuestion] = useState('');
   const [response, setResponse] = useState('');
   const [loading, setLoading] = useState(false);
+  const apiKey = process.env.REACT_APP_API_KEY 
 
   const askAI = async () => {
-    if (!question.trim()) return;
-
     setLoading(true);
+    setResponse('');
     try {
-      const res = await fetch('http://localhost:5000/ask', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: question }),
-      });
-
-      const data = await res.json();
-      setResponse(data.answer);
-    } catch (err) {
-      console.error(err);
-      setResponse('Sorry, something went wrong with the AI.');
-    } finally {
-      setLoading(false);
+      const res = await axios.post(
+        "https://api.openai.com/v1/chat/completions",
+        {
+          model: "gpt-3.5-turbo",
+          messages: [
+            { role: "system", content: "You are a financial tutor who is educating a client new to finances." },
+            { role: "user", content: question },
+          ],
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${apiKey}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const reply = res.data.choices[0].message.content;
+      setResponse(reply); // Display the reply as plain text
+    } catch (error) {
+      setResponse("Sorry, something went wrong.");
+      console.error(error);
     }
+    setLoading(false);
   };
+  
 
   return (
     <div style={{ padding: '2rem', fontFamily: 'Arial, sans-serif' }}>
