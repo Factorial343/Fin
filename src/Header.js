@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import logo from './images/logo.png';
 import './Header.css';
+import BudgetDropdown from './BudgetDropdown';
 
 const Header = () => {
     return (
@@ -14,7 +15,10 @@ const Header = () => {
                 <Link to="/advisor"><p className="logo">TRY ME!</p></Link>
                 <Link to="/AIExpenseSorter">AI Budget Planner</Link>
             </div>
-            
+        
+            <div style={{ position: 'absolute', top: 20, right: 20 }}>
+              <BudgetDropdown />
+            </div>
         </div>
     );
 }

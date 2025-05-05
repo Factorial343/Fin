@@ -6,6 +6,7 @@ import Home from "./Home";
 import Login from "./Login";
 import Register from "./Register";  // ✅ import Register component
 import AIExpenseSorter from "./AIExpenseSorter";
+import LearnBudgeting from './LearnBudgeting';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/advisor" element={<FinancialAdvisorApp />} />
           <Route path="/AIExpenseSorter" element={<AIExpenseSorter />} />
+          <Route path="/learn-budgeting" element={<LearnBudgeting />} /> 
           {/* <Route path="/achivement" element={<Achivements/>}/> */}
         </Routes>
       </Router>
