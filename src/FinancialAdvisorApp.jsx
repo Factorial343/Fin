@@ -33,7 +33,7 @@ const videoAnswers = [
 const achivements = [
   "Entrepreneur : Ask about business",
   "Rookie : Ask your first question",
-  "Veteran : Ask 100 questions",
+  "Rothlisberger : Ask about a Roth IRA",
 ];
 
 const FinancialAdvisorApp = () => {
@@ -101,6 +101,14 @@ const FinancialAdvisorApp = () => {
       achivements.splice(1, 1);
     }
     
+    if (message.toLowerCase().includes("roth ira") && !achievements.includes("Rothlisberger : Ask about a Roth IRA"))
+       {
+      alert("Rothlisberger achievement unlocked!");
+      setAchievements([...achievements, "Rothlisberger : Ask about a Roth IRA"]);
+      achivements.splice(1, 1);
+    }
+    
+
   };
 
   async function processMessageToChatGPT(chatMessages) {
