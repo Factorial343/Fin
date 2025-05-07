@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import "./Login.css";  // reuse login styles for now
-
+import { useNavigate, Link } from 'react-router-dom';
+import logo from './images/logo.png';
 
 
 const Register = () => {
@@ -20,44 +21,43 @@ const Register = () => {
   };
 
   return (
-    <div className="login_body">
-      <div className="container">
-        <div className="screen">
-          <div className="screen__content">
-            <form className="login" onSubmit={handleRegister}>
-              <div className="login__field">
-                <i className="login__icon fas fa-user" />
-                <input
-                  type="text"
-                  className="login__input"
-                  placeholder="New Username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-              </div>
-              <div className="login__field">
-                <i className="login__icon fas fa-lock" />
-                <input
-                  type="password"
-                  className="login__input"
-                  placeholder="New Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-              <button type="submit" className="button login__submit">
-                <span className="button__text">Register Now</span>
-                <i className="button__icon fas fa-chevron-right" />
-              </button>
-            </form>
+    <div className="login-page">
+      {/* Slim futuristic header */}
+      <header className="login-header">
+        <img src={logo} alt="NeuroBank Logo" className="login-header__logo" />
+        <h1 className="login-header__title">Join NeuroBank Today</h1>
+      </header>
+
+      {/* Floating glassy registration container */}
+      <div className="login-container">
+        <form className="login-form" onSubmit={handleRegister}>
+          <div className="login-field">
+            <input
+              type="text"
+              className="login-input"
+              placeholder="Choose a Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
           </div>
-          <div className="screen__background">
-            <span className="screen__background__shape screen__background__shape4" />
-            <span className="screen__background__shape screen__background__shape3" />
-            <span className="screen__background__shape screen__background__shape2" />
-            <span className="screen__background__shape screen__background__shape1" />
+          <div className="login-field">
+            <input
+              type="password"
+              className="login-input"
+              placeholder="Create a Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
           </div>
-        </div>
+          <button type="submit" className="login-button">
+            Register Now
+          </button>
+          <p style={{ marginTop: '1rem' }}>
+            Already have an account? <Link to="/">Log in here</Link>
+          </p>
+        </form>
       </div>
     </div>
   );
