@@ -38,7 +38,7 @@ const LearnBudgeting = () => {
   
 
   return (
-    <div style={{ padding: '2rem', fontFamily: 'Arial, sans-serif' }}>
+    <div style={{ padding: '2rem', paddingTop: '90px',fontFamily: 'Arial, sans-serif' }}>
       <h1>AI Tutor</h1>
       <p>Ask me anything:</p>
       <input
@@ -57,7 +57,7 @@ const LearnBudgeting = () => {
       </button>
 
       {response && (
-        <div style={{ marginTop: '20px', background: '#f4f4f4', padding: '15px', borderRadius: '8px' }}>
+        <div style={{ marginTop: '20px', background: '#f4f4f4', padding: '15px', borderRadius: '8px', color: 'rgba(2, 75, 66, 0.97)' }}>
           <strong>AI says:</strong>
           <p>{response}</p>
         </div>
@@ -66,7 +66,7 @@ const LearnBudgeting = () => {
       <hr style={{ margin: '3rem 0' }} />
 
       <h2>📚 Learn More</h2>
-      <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', color: 'rgba(2, 75, 66, 0.97)'  }}>
         <div style={cardStyle}>
           <h3>Budgeting Basics</h3>
           <p>Understand how to track expenses, set goals, and stick to a monthly budget.</p>

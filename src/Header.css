@@ -1,77 +1,157 @@
-.logo_icon {
-  width: 100px;
-  height: 100px;
+/* ─── Vars & Reset ─── */
+:root {
+  --nav-bg: rgba(6, 25, 37, 0.5);
+  --nav-blur: 10px;
+  --link-color: #00FDD8;
+  --link-hover: #5BC7D4;
+  --accent-glow: rgba(0, 253, 216, 0.7);
 }
 
+/* ─── Header Container (Glassmorphism) ─── */
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  height: 100px;
-  background-color: #183059;
-  color: white;
-}
-
-.links {
+  position: fixed;
+  top: 0; left: 0; right: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-family: 'Roboto', sans-serif;
-  background-color: #183059;
-  font-size: 15px;
+  padding: 0 2rem;
+  height: 80px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(var(--nav-blur));
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
-.logo {
-  font-size: 15px;
-  color: #fff;
-  background: linear-gradient(45deg, #F03A47, #F03A47);
-  padding: 5pt 5pt;
-  border-radius: 15px;
-  display: inline-block;
-  font-family: 'Arial', sans-serif;
+/* ─── Logo ─── */
+.logo_icon {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+/* ─── Nav Links ─── */
+.links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* 5. BIG BOLD LETTERS */
+.links a.nav-link {
+  position: relative;
+  color: var(--link-color);
+  font-size: 1.1rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25);
-  transform: perspective(1px) translateZ(0);
-  transition: color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 0.5rem 0;
+  transition: transform 0.3s ease, color 0.3s ease;
+  perspective: 200px;
 }
 
-.logo:hover {
-  color: #D22E1E;
-  transform: scale(1.05) rotate(5deg);
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
-  transition-delay: 0s, 0s, 0.1s;
+/* 2. Active Link Glow */
+.links a.nav-link.active {
+  color: var(--link-hover);
+  text-shadow:
+    0 0 6px var(--link-hover),
+    0 0 12px var(--accent-glow);
 }
 
-a {
-  margin: 0 20px;
-  text-decoration: none;
-  color: white;
-  font-weight: 500;
-  background-color: #183059;
+/* 3. Hover Animations with Perspective */
+.links a.nav-link:hover {
+  transform: rotateX(15deg) scale(1.05);
+  color: var(--link-hover);
 }
 
-/* ✅ Style for Learn Budgeting & Taxes button */
-.learn-btn {
-  margin-left: 20px;
-  padding: 8px 16px;
-  background: linear-gradient(45deg, #F03A47, #D22E1E);
-  color: white;
-  border: none;
-  border-radius: 15px;
-  font-weight: bold;
-  font-size: 14px;
-  font-family: 'Arial', sans-serif;
+/* 4. Animated Underline / Pulse */
+.links a.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 50%;
+  height: 2px;
+  background: var(--link-hover);
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform 0.4s ease;
+}
+.links a.nav-link:hover::after,
+.links a.nav-link.active::after {
+  transform: translateX(-50%) scaleX(1);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* ─── “TRY ME!” Button ─── */
+/* 6. Animated Try Me! */
+.cta-btn {
+  color: var(--link-color);
+  background: transparent;
+  border: 2px solid var(--link-color);
+  padding: 0.5rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 0 6px var(--link-color),
+    inset 0 0 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  perspective: 200px;
+}
+.cta-btn::before {
+  content: "";
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle, var(--link-color) 10%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.cta-btn:hover {
+  transform: translateY(-4px) rotateX(10deg);
+  box-shadow:
+    0 0 12px var(--accent-glow),
+    inset 0 0 6px rgba(0, 0, 0, 0.2);
+}
+.cta-btn:hover::before {
+  opacity: 0.2;
+  animation: pulseBg 3s infinite ease-in-out;
+}
+
+@keyframes pulseBg {
+  0%,100% { transform: scale(1) rotate(0deg); }
+  50%    { transform: scale(1.2) rotate(5deg); }
+}
+
+/* ─── Responsive Collapse (Hamburger) ─── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
   cursor: pointer;
-  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25);
-  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
+.hamburger span {
+  width: 24px; height: 3px;
+  background: var(--link-color);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+/* (you can toggle .open on .links & .hamburger in JS to show mobile menu) */
 
-.learn-btn:hover {
-  background: #ffffff;
-  color: #F03A47;
-  transform: scale(1.05);
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+@media (max-width: 768px) {
+  .links { display: none; }
+  .hamburger { display: flex; }
+  .links.open {
+    display: flex;
+    position: absolute;
+    top: 80px; right: 0;
+    flex-direction: column;
+    background: var(--nav-bg);
+    backdrop-filter: blur(var(--nav-blur));
+    width: 200px;
+    padding: 1rem;
+    gap: 1rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.7);
+  }
 }

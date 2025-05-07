@@ -214,7 +214,7 @@ const AIExpenseSorter = () => {
     };
 
     return (
-      <div className="budget-chart" style={{ maxWidth: "400px", margin: "2rem auto" }}>
+      <div className="budget-chart" style={{ maxWidth: "400px", margin: "2rem auto", color: "rgba(2, 75, 66, 0.97)" }}>
         <h4>📈 Budget Distribution</h4>
         <Pie data={chartData} />
       </div>

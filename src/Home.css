@@ -1,123 +1,579 @@
 :root {
-    --capital-one-blue: #183059;
-    --capital-one-red: #e31837;
-  }
-  
-
-  /* Global styles */
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  
-   
-  }
-  
-  /* Header styles */
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--capital-one-blue);
-    color: white;
-    padding: 1rem;
-  }
-  
-  /* Logo styles */
-  .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
-  /* Navigation menu styles */
-  .nav-menu a {
-    color: white;
-    text-decoration: none;
-    margin: 0 1rem;
-    transition: color 0.3s ease;
-  }
-  
-  .nav-menu a:hover {
-    color: var(--capital-one-red);
-  }
-  
-  /* Hero section styles */
-  .hero {
-    background-color: #cccccccc;
-    color: #AF5B5B;
-    text-align: center;
-    padding: 4rem 0;
-
-  }
-  
-  .hero-content {
-    max-width:500px;
-    margin: 0 auto;
-   
- 
-  }
-  
-  .hero h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-  }
- 
-  /* Feature section styles */
-  .features {
-    padding: 4rem 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .feature {
-    text-align: center;
-    margin: 1.5rem;
-    padding: 1.5rem;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
-    height: fit-content;
-  }
-  
-  .feature-icon {
-    font-size: 2rem;
-    color: var(--capital-one-red);
-   
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
-    
-  }
-  
-  /* About section styles */
-  .about {
-  
-    padding: 4rem ;
-    text-align: center;
-    background-color: #447ec0;
-  
-  }
-  
-  /* Footer styles */
-  .footer {
-    background-color: #183059;
-    color: white;
-    text-align: center;
-    padding: 2.7rem 0;
-    padding-bottom: 73px;
-   
-  }
-#picChange{
-  width: 500px;
-  height: 400px;
+  --bg-page:           #061925;
+  --bg-header:         #132838;
+  --card-bg:           #113041;
+  --card-border:       #00C2AA;
+  --card-shadow:       rgba(0, 194, 170, 0.4);
+  --accent-1:          #0E3A4C;
+  --accent-2:          #145C6E;
+  --input-underline:   #0C2735;
+  --input-text:        #00FDD8;
+  --btn-bg:            #3C858C;
+  --btn-text:          #5BC7D4;
+  --btn-shadow:        rgba(0, 253, 216, 0.6);
+  --nav-link:          #00FDD8;
+  --nav-link-hover:    #0792A6;
+  --text-light:        #E0F7F7;
 }
- img{
-  width: 500px;
-  height: 500px;
- }
- 
- th {
-  font-weight: lighter;
- }
-  
- 
-  
+
+/* Global styles */
+body {
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-page);
+  color: var(--text-light);
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+/* Header styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg-header);
+  color: var(--text-light);
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 10px var(--card-shadow);
+  transition: background-color 0.4s ease;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* Navigation styles */
+.nav-menu a {
+  color: var(--nav-link);
+  text-decoration: none;
+  margin: 0 1rem;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-menu a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: var(--nav-link-hover);
+  transition: width 0.3s ease;
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+}
+
+.nav-menu a:hover {
+  color: var(--nav-link-hover);
+}
+
+.nav-menu a:hover::after {
+  width: 100%;
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 1rem .5rem;            /* slimmer vertical padding */
+  max-height: 290px;               /* cap the height */
+  text-align: center;
+  background: linear-gradient(120deg, #0C2735, #113041, #132838);
+  background-size: 400% 400%;
+  animation: animatedBackground 12s ease infinite;
+  border-radius: 40px 10px 40px 10px;
+  box-shadow:
+    0 0 12px rgba(0, 253, 216, 0.08),
+    0 0 30px rgba(0, 253, 216, 0.08);
+}
+
+@keyframes animatedBackground {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+
+.hero h1 {
+  font-size: 2.4rem;               /* reduced size */
+  line-height: 1.2;                /* tighter line-height */
+  color: #00fdd8;
+  text-shadow:
+    0 0 6px #00fdd8,
+    0 0 15px rgba(0, 253, 216, 0.6),
+    0 0 30px rgba(0, 194, 170, 0.4),
+    0 0 60px rgba(0, 253, 216, 0.3);
+  animation: pulseGlow 2s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% {
+    text-shadow:
+      0 0 6px #00fdd8,
+      0 0 12px rgba(0, 253, 216, 0.4),
+      0 0 24px rgba(0, 194, 170, 0.2);
+  }
+  100% {
+    text-shadow:
+      0 0 10px #00fdd8,
+      0 0 20px rgba(0, 253, 216, 0.7),
+      0 0 40px rgba(0, 194, 170, 0.5);
+  }
+}
+
+.hero p {
+  font-size: 1rem;                 /* reduced size */
+  margin-bottom: 1rem;             /* space before button */
+  color: var(--text-light);
+  text-shadow: 0 0 4px rgba(0, 253, 216, 0.5);
+  animation: fadeInUp 1.4s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 255, 255, 0.06) 0%,
+    transparent 70%
+  );
+  animation: shimmer 8s linear infinite;
+  z-index: 0;
+}
+
+@keyframes shimmer {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(50%); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Glowing Button */
+.cta-btn-future {
+  margin-top: 1rem;                /* raised up */
+  padding: 0.75rem 2rem;           /* tighter padding */
+  font-size: 1rem;                 /* smaller text */
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #00fdd8;
+  background: linear-gradient(135deg, #0C2735, #113041, #132838);
+  background-size: 300% 300%;
+  border: 2px solid #00fdd8;
+  border-radius: 25px 80px 25px 80px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow:
+    0 0 10px rgba(0, 253, 216, 0.2),
+    0 0 20px rgba(0, 253, 216, 0.3),
+    inset 0 0 8px rgba(0, 253, 216, 0.1);
+  animation: floatButton 3s ease-in-out infinite;
+  z-index: 2;
+  position: relative;
+  backdrop-filter: blur(3px);
+  text-shadow: 0 0 6px rgba(0, 253, 216, 0.4);
+}
+
+.cta-btn-future:hover {
+  transform: translateY(-6px) scale(1.05);
+  background-position: right center;
+  background: linear-gradient(120deg, #00fdd8, #3C858C, #00fdd8);
+  background-size: 400% 400%;
+  box-shadow:
+    0 0 12px #00fdd8,
+    0 0 24px rgba(0, 253, 216, 0.5),
+    0 0 40px rgba(0, 253, 216, 0.7),
+    inset 0 0 10px rgba(0, 253, 216, 0.15);
+}
+
+@keyframes floatButton {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+/* Features */
+.features {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  padding: 4rem 2rem;
+  background-color: var(--bg-header);
+  gap: 1rem;
+}
+
+.feature {
+  background-color: var(--card-bg);
+  color: var(--btn-text);
+  padding: 2rem;
+  width: 280px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px var(--btn-shadow);
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--btn-text);
+}
+
+.about {
+  background-color: var(--accent-2);
+  padding: 1rem 1rem; /* reduced vertical space */
+  text-align: center;
+  color: var(--text-light);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.about::before,
+.about::after {
+  content: "";
+  position: absolute;
+  width: 300%;
+  height: 300%;
+  background: radial-gradient(circle, rgba(0, 253, 216, 0.1), transparent 60%);
+  animation: pulseBackground 8s ease-in-out infinite;
+  z-index: 0;
+}
+
+.about::after {
+  animation-delay: 4s;
+}
+
+@keyframes pulseBackground {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0.5;
+  }
+}
+
+.about h2 {
+  font-size: 3rem;
+  color: var(--input-text);
+  text-shadow:
+    0 0 12px var(--input-text),
+    0 0 24px rgba(0, 253, 216, 0.8),
+    0 0 40px rgba(0, 194, 170, 0.6);
+  margin-bottom: 2rem;
+  z-index: 2;
+  position: relative;
+  animation: fadeInDown 1s ease-out forwards;
+}
+
+.about p {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.25rem;
+  line-height: 1.8;
+  background-color: rgba(17, 48, 65, 0.6); /* frosted glass effect */
+  padding: 2rem;
+  border: 1px solid var(--btn-shadow);
+  box-shadow: 0 0 20px rgba(0, 253, 216, 0.2);
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+  position: relative;
+  z-index: 2;
+  animation: riseUp 1.2s ease-out forwards;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes riseUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Footer */
+.footer {
+  background-color: var(--bg-header);
+  color: var(--btn-text);
+  text-align: center;
+  padding: 2.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+/* Images */
+#picChange,
+img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px var(--card-shadow);
+  transition: transform 0.4s ease;
+}
+
+img:hover {
+  transform: scale(1.03);
+}
+
+/* Tables */
+th {
+  font-weight: 400;
+  color: var(--btn-text);
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Info section layout: image + text side-by-side */
+.info-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 4rem 2rem;
+}
+
+/* Illustration or visual */
+.info-section img {
+  width: 420px;
+  max-width: 90%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px var(--card-shadow);
+  flex-shrink: 0;
+}
+
+/* Text content box */
+.info-box {
+  background-color: var(--card-bg);
+  color: var(--btn-text);
+  padding: 2rem;
+  border-radius: 16px;
+  max-width: 600px;
+  box-shadow: 0 8px 24px var(--btn-shadow);
+  line-height: 1.6;
+  font-size: 1.05rem;
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 2;
+}
+
+/* Optional overlapping modifier (adds a layered effect) */
+.info-box.overlap-left {
+  margin-left: -60px;
+}
+
+.info-box.overlap-right {
+  margin-right: -60px;
+}
+
+/* Heading inside box */
+.info-box h3 {
+  color: var(--input-text);
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+
+/* ————————————————
+   Patch: Turn  existing table rows
+   into side-by-side flex “feature + image”
+   ———————————————— */
+
+/* 1) Let the .features container be block-level */
+.features {
+  display: block !important;
+}
+
+/* 2) Make each <tr> a flex row */
+.features table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.features table tr {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+/* 3) Center the contents of each cell */
+.features table th,
+.features table td {
+  flex: 1 1 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+
+/* 4) Reapply your glow + hover to .feature */
+.features table .feature {
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 0 20px var(--btn-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.features table .feature:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px var(--btn-shadow);
+}
+
+/* 5) Reapply the same glow + scale on your images */
+.features table img,
+#picChange {
+  max-width: 100%;
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 0 20px var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.features table img:hover,
+#picChange:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px var(--btn-shadow);
+}
+
+
+/* ─── Futuristic Hero Bar ─── */
+
+/* Animated background gradient */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 6rem 1rem;
+  text-align: center;
+  background: linear-gradient(45deg, var(--accent-1), var(--accent-2), var(--btn-bg), var(--btn-text));
+  background-size: 300% 300%;
+  animation: shiftGradient 10s ease infinite;
+}
+
+@keyframes shiftGradient {
+  0%   { background-position:   0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position:   0% 50%; }
+}
+
+/* Fade & slide in the content */
+.hero .hero-content {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s ease-out forwards 0.3s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Neon text glow */
+.hero h1 {
+  font-size: 3.5rem;
+  color: var(--input-text);
+  text-shadow:
+    0 0 8px var(--input-text),
+    0 0 20px rgba(0, 253, 216, 0.7),
+    0 0 30px rgba(0, 194, 170, 0.7);
+  animation: glowTitle 2s ease-in-out infinite alternate;
+}
+
+@keyframes glowTitle {
+  from {
+    text-shadow:
+      0 0 8px var(--input-text),
+      0 0 20px rgba(0, 253, 216, 0.7),
+      0 0 30px rgba(0, 194, 170, 0.7);
+  }
+  to {
+    text-shadow:
+      0 0 12px var(--input-text),
+      0 0 24px rgba(0, 253, 216, 0.9),
+      0 0 40px rgba(0, 194, 170, 0.9);
+  }
+}
+
+/* Subheading */
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: var(--text-light);
+  text-shadow: 0 0 4px rgba(0, 253, 216, 0.5);
+}
+
+/* Glowing CTA button */
+.cta-btn {
+  background: transparent;
+  border: 2px solid var(--input-text);
+  color: var(--input-text);
+  padding: 0.75rem 2rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  text-shadow: 0 0 4px rgba(0, 253, 216, 0.6);
+}
+
+.cta-btn:hover {
+  background: rgba(2, 40, 34, 0.741);
+  box-shadow:
+    0 0 8px var(--input-text),
+    0 0 16px rgba(0, 253, 216, 0.7),
+    0 0 24px rgba(0, 194, 170, 0.7);
+}
+
  

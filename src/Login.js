@@ -1,15 +1,14 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import "./Login.css"
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import './Login.css';
+import logo from './images/logo.png';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const backendBaseUrl = 'http://localhost:5000'; //before trying to run change to codespace url and make sure 5000 port is public
   const navigate = useNavigate();
+  const backendBaseUrl = 'http://localhost:5000'; // Update to Codespaces/public when needed
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -17,60 +16,53 @@ const Login = () => {
       const res = await axios.post(`${backendBaseUrl}/login`, { username, password });
       alert(res.data.message);
       localStorage.setItem('token', res.data.token);
-      navigate('/Home');  // Redirect to home after successful login
+      navigate('/home');
     } catch (err) {
       alert(err.response ? err.response.data : err.message);
     }
   };
 
-
   return (
-    <div className="login_body">
-      <div className="container">
-        <div className="screen">
-          <div className="screen__content">
-          <form className="login" onSubmit={handleLogin}>
-            <div className="login__field">
-              <i className="login__icon fas fa-user" />
-              <input
-                type="text"
-                className="login__input"
-                placeholder="User name / Email"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
-            <div className="login__field">
-              <i className="login__icon fas fa-lock" />
-              <input
-                type="password"
-                className="login__input"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <button type="submit" className="button login__submit">
-              <span className="button__text">Log In Now</span>
-              <i className="button__icon fas fa-chevron-right" />
-            </button>
-            <p style={{ marginTop: '1rem' }}>
-              Don't have an account? <Link to="/register">Register here</Link>
-            </p>
+    <div className="login-page">
+      {/* Slim futuristic header */}
+      <header className="login-header">
+        <img src={logo} alt="NeuroBank Logo" className="login-header__logo" />
+        <h1 className="login-header__title">Welcome Back to NeuroBank</h1>
+      </header>
 
-          </form>
+      {/* Floating glassy login container */}
+      <div className="login-container">
+        <form className="login-form" onSubmit={handleLogin}>
+          <div className="login-field">
+            <input
+              type="text"
+              className="login-input"
+              placeholder="User name / Email"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
           </div>
-          <div className="screen__background">
-            <span className="screen__background__shape screen__background__shape4" />
-            <span className="screen__background__shape screen__background__shape3" />
-            <span className="screen__background__shape screen__background__shape2" />
-            <span className="screen__background__shape screen__background__shape1" />
+          <div className="login-field">
+            <input
+              type="password"
+              className="login-input"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
           </div>
-        </div>
+          <button type="submit" className="login-button">
+            Log In Now
+          </button>
+          <p style={{ marginTop: '1rem' }}>
+            Don’t have an account? <Link to="/register">Register here</Link>
+          </p>
+        </form>
       </div>
     </div>
   );
 };
 
 export default Login;
-

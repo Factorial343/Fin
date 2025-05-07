@@ -1,33 +1,210 @@
-.achievements-container {
+
+body,
+.advisor-page {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start; /* Keeps tops aligned */
+  justify-content: center; /* Optional: centers content horizontally */
+  width: 100%;
+  min-height: 80vh
+}
+/* ─── FUTURISTIC SLIM HEADER ─── */
+.advisor-header {
+width: 100%;
+max-width: 600px;
+display: flex;
+align-items: center;
+justify-content: flex-start;
+padding: 0.5rem 1rem;
+background: linear-gradient(120deg, var(--accent-1), var(--accent-2));
+background-size: 200% 200%;
+animation: shiftGradientHeader 8s ease infinite;
+border-radius: 12px 12px 0 0;
+box-shadow:
+ 0 0 12px rgba(0, 253, 216, 0.3),
+ inset 0 0 8px rgba(0, 194, 170, 0.2);
+position: relative;
+z-index: 2;
+transition: box-shadow 0.3s ease;
+}
+.advisor-header:hover {
+box-shadow:
+ 0 0 20px rgba(0, 253, 216, 0.5),
+ inset 0 0 12px rgba(0, 194, 170, 0.3);
+}
+
+@keyframes shiftGradientHeader {
+0%   { background-position:   0% 50%; }
+50%  { background-position: 100% 50%; }
+100% { background-position:   0% 50%; }
+}
+
+.advisor-logo {
+width: 48px;
+height: 48px;
+margin-right: 0.75rem;
+animation: bounceLogo 4s ease-in-out infinite;
+}
+
+@keyframes bounceLogo {
+0%, 100% { transform: translateY(0); }
+50%      { transform: translateY(-8px) rotate(-5deg); }
+}
+
+.advisor-title {
+color: var(--btn-text);
+font-size: 1.25rem;
+font-weight: 600;
+text-shadow:
+ 0 0 6px var(--btn-text),
+ 0 0 12px rgba(0, 253, 216, 0.6);
+margin: 0;
+transition: text-shadow 0.3s ease;
+max-width: 800px;
+margin: 0;
+text-align: center;
+
+}
+.advisor-header:hover .advisor-title {
+text-shadow:
+ 0 0 8px var(--btn-text),
+ 0 0 16px rgba(0, 253, 216, 0.8);
+}
+
+/* ───────────────────────────────────────────────
+   Floating Glassy Neon Chat Panel
+   ─────────────────────────────────────────────── */
+.advisor-chat {
+  position: relative;
+  background: rgba(17, 48, 65, 0.75);       /* semi‐transparent panel */
+  border: 2px solid var(--btn-bg);          /* neon border */
+  border-radius: 16px;
+  backdrop-filter: blur(6px);               /* glass effect */
+  box-shadow:
+    0 0 20px rgba(0, 253, 216, 0.4),
+    inset 0 0 10px rgba(0, 194, 170, 0.2);
+  animation: floatChat 6s ease-in-out infinite;
+  overflow: hidden;
+}
+
+/* Float animation */
+@keyframes floatChat {
+  0%, 100% { transform: translateY(0px); }
+  50%      { transform: translateY(-8px); }
+}
+
+/* Tweak the inner chat container too */
+.advisor-chat .cs-chat-container {
+  background: rgba(17, 48, 65, 0.85) !important;
+}
+
+/* Highlight the input area */
+.advisor-chat .cs-message-input {
+  background: rgba(0, 253, 216, 0.1) !important;
+  border-top: 1px solid var(--btn-bg) !important;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Neon glow on hover over input */
+.advisor-chat .cs-message-input:hover {
+  box-shadow:
+    0 0 10px var(--btn-bg),
+    inset 0 0 6px rgba(0, 253, 216, 0.3);
+}
+
+/* Style all message bubbles */
+.advisor-chat .cs-message-list .cs-message {
+  border-radius: 8px !important;
+  transition: background 0.3s ease;
+}
+
+/* Outgoing (user) bubbles use btn-bg color */
+.advisor-chat .cs-message-list .cs-message.outgoing {
+  background: var(--btn-bg) !important;
+  color: #061925 !important;
+}
+
+/* Incoming (assistant) bubbles get a subtle glow */
+.advisor-chat .cs-message-list .cs-message.incoming {
+  background: rgba(60,133,140,0.1) !important;
+  border: 1px solid var(--btn-bg) !important;
+  box-shadow: 0 0 8px rgba(0, 253, 216, 0.2);
+}
+
+/* Make the “typing…” indicator match */
+.advisor-chat .cs-typing-indicator {
+  color: var(--btn-bg) !important;
+}
+
+/* ───────────────────────────────────────────────
+   Achievements Panel (unchanged)
+   ─────────────────────────────────────────────── */
+   .achievements-container {
+    flex: 0 0 300px;
+    margin-left: 2rem;
     background-color: #f2f2f2;
-    margin-top: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    height: fit-content;
-    padding: 1rem;
-    margin-left: 3rem;
-  }
-
-
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 72, 121, 0.08);
+    padding: 1.5rem 1rem;
+    min-width: 240px;
+    max-width: 320px;
   
-  #achivementButton{
+    top: 40px;
+    height: fit-content;
+    z-index: 10;
+    transition: box-shadow 0.2s;
+  }
+  
+  #achivementButton {
     border-radius: 20px;
     background-color: #004879;
     color: #fff;
-    padding: 5pt 5pt;
+    padding: 0.5rem 1.2rem;
+    border: none;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
   }
+  
+  #achivementButton:hover {
+    background-color: #276fbf;
+  }
+  
   .achievements-list {
     margin-top: 1rem;
+  }
+  
+  .achievements-list h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #004879;
   }
   
   .achievements-list ul {
     list-style: none;
     padding-left: 0;
+    margin-bottom: 1rem;
   }
   
   .achievements-list li {
-    padding: 0.5rem;
+    padding: 0.5rem 0.75rem;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: #e6f0fa;
+    color: #183059;
+    box-shadow: 0 2px 4px rgba(0, 72, 121, 0.08);
     margin-bottom: 0.5rem;
+    font-size: 0.98rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
   }
+  
+  /* Style for locked achievements (add className="locked" in your JSX for locked items) */
+  .achievements-list li.locked {
+    background: #f8d7da;
+    color: #a1a1a1;
+    opacity: 0.7;
+  }
+  

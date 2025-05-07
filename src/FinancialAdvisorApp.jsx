@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ReactPlayer from "react-player";
 import './FinancialAdvisorApp.css'
 
+import logo from "./images/logo.png";
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import {
   MainContainer,
@@ -39,9 +40,9 @@ const achivements = [
 const FinancialAdvisorApp = () => {
   const [messages, setMessages] = useState([
     {
-      message: "Hello, I'm Kira, your financial advisor",
+      message: "Hello, I'm NeuroBank, your financial advisor",
       sentTime: "just now",
-      sender: "Kira",
+      sender: "NeuroBank",
     },
   ]);
   const [isTyping, setIsTyping] = useState(false);
@@ -72,11 +73,11 @@ const FinancialAdvisorApp = () => {
       setTimeout(() => {
         const answerMessage = {
           message: answers[questionIndex],
-          sender: "Kira",
+          sender: "NeuroBank",
         };
         const videoMessage = {
           message: videoAnswers[questionIndex],
-          sender: "Kira",
+          sender: "NeuroBank",
           isVideo: true,
         };
 
@@ -164,48 +165,53 @@ sender: "ChatGPT"
     <div
       className="App"
       style={{
-        height: "80vh",
+        height: "calc(100vh - 100px)",
         display: "flex",
+        flexDirection: "column",
         justifyContent: "center",
-        marginTop: "2.5rem",
+        marginTop: "100px",
       }}
     >
-      <MainContainer
-        style={{ maxWidth: "600px", width: "90%", height: "80vh" }}
-      >
-        <ChatContainer>
-          <MessageList
-          scrollBehavior="smooth"
-            typingIndicator={
-              isTyping ? <TypingIndicator content="Kira is typing" /> : null
-            }
-            style={{ maxHeight: "calc(100% - 40px)", overflowY: "auto" }}
-          >
-            {messages.map((message, i) => {
-              if (message.sender === "Kira" && message.isVideo) {
-                return (
-                  <div key={i}>
-                    <MessageRecipient>{message.sender}</MessageRecipient>
-
-                    <ReactPlayer
-                      url={videoUrl} // Set the URL for the React Player
-                      controls={true}
-                      width="400px"
-                      height="400px"
-                    />
-                  </div>
-                );
-              } else {
-                return <Message key={i} model={message} />;
+      {/* ─── FUTURISTIC SLIM HEADER ─── */}
+      <header className="advisor-header">
+        <img src={logo} alt="NeuroBank Logo" className="advisor-logo" />
+        <h2 className="advisor-title">NeuroBank Advisor</h2>
+      </header>
+      <div className="advisor-page">
+      <div className="advisor-chat" style={{ maxWidth: "800px", width: "665px", height: "70vh", marginTop: "1.5rem" }}>
+        <MainContainer>
+          <ChatContainer>
+            <MessageList
+              scrollBehavior="smooth"
+              typingIndicator={
+                isTyping ? (
+                  <TypingIndicator content="NeuroBank is typing" />
+                ) : null
               }
-            })}
-          </MessageList>
-          <MessageInput placeholder="Type message here" onSend={handleSend} />
-        </ChatContainer>
-      </MainContainer>
+              style={{ maxHeight: "calc(100% - 40px)", overflowY: "auto" }}
+            >
+              {messages.map((message, i) => {
+                if (message.sender === "NeuroBank" && message.isVideo) {
+                  return (
+                    <div key={i}>
+                      <MessageRecipient>{message.sender}</MessageRecipient>
+                      <ReactPlayer url={videoUrl} controls width="400px" height="400px" />
+                    </div>
+                  );
+                }
+                return <Message key={i} model={message} />;
+              })}
+            </MessageList>
+            <MessageInput
+              placeholder="Type message here"
+              onSend={handleSend}
+            />
+          </ChatContainer>
+        </MainContainer>
+      </div>
 
+      {/* ─── ACHIEVEMENTS PANEL ─── */}
       <div className="achievements-container">
-        {/* Button to toggle visibility of achievements */}
         <button id="achivementButton" onClick={handleAchievementsButtonClick}>
           {showAchievements ? "Hide Achievements" : "Show Achievements"}
         </button>
@@ -213,24 +219,23 @@ sender: "ChatGPT"
           <div className="achievements-list">
             <h2>Unlocked Achievements:</h2>
             <ul>
-              {achievements.map((achievement, index) => (
-                <li key={index}>{achievement}</li>
+              {achievements.map((ach, idx) => (
+                <li key={idx}>{ach}</li>
               ))}
             </ul>
             <h2>Locked Achievements:</h2>
             <ul>
-              {/* Logic to display locked achievements (if any) */}
-              {achivements.map((achivement, index) => {
-                const achievement = `Achievement: ${achivement}`;
-                if (!achievements.includes(achievement)) {
-                  return <li  key={index}>{achievement} (Locked)</li>;
-                }
-                return null;
+              {achivements.map((ach, idx) => {
+                const label = `Achievement: ${ach}`;
+                return !achievements.includes(label) ? (
+                  <li key={idx}>{label} (Locked)</li>
+                ) : null;
               })}
             </ul>
           </div>
         )}
       </div>
+    </div>
     </div>
   );
 };
