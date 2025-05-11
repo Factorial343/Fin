@@ -28,6 +28,7 @@ const LearnBudgeting = () => {
         }
       );
       const reply = res.data.choices[0].message.content;
+      console.log("AI Says:", reply);
       setResponse(reply); // Display the reply as plain text
     } catch (error) {
       setResponse("Sorry, something went wrong.");

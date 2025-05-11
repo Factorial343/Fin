@@ -94,6 +94,8 @@ const AIExpenseSorter = () => {
     }
   }`;
   
+  console.log("Sending expense categorization request to OpenAI API...", { income, cleanedInput });
+
       const res = await axios.post("https://api.openai.com/v1/chat/completions", {
         model: "gpt-3.5-turbo",
         messages: [
@@ -112,7 +114,7 @@ const AIExpenseSorter = () => {
       const jsonEnd = reply.lastIndexOf("}");
       const jsonText = reply.substring(jsonStart, jsonEnd + 1);
       const parsed = JSON.parse(jsonText);
-  
+  console.log("ChatGPT response:", reply); 
       setCategorized(parsed);
       setPercentages(parsed.percentages || {});
   
@@ -140,7 +142,7 @@ const AIExpenseSorter = () => {
           "Content-Type": "application/json",
         },
       });
-  
+  console.log("AI Summary:", summaryRes.data.choices[0].message.content);
       setSummary(summaryRes.data.choices[0].message.content);
   
     } catch (err) {
